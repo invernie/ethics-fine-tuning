@@ -1,0 +1,28 @@
+Needed:
+- SLM (1-8B parameters) with native tool calling
+- sandbox environment - agent faces tasks - log memory, throughputs and checkpoints
+- fine-tuning cluster - supports SFT and DPO with LoRA / QLoRA, min 2 GPUs, fine-tuned model can be served from it, scriptable and config driven (preferred)
+- baselining dataset (refusals, safe tool calls, preference pairs)
+- training dataset (safe tool calls, preference pairs)
+- testing dataset
+- evaluation method
+
+
+Steps:
+0.a Pick the baselining, training and testing datasets
+0.b Pick the SLM. Do baselining on multiple models before picking one: Qwen2.5-7B-Instruct / Qwen3-8B-Instruct / Granite 4.0 Micro (approx. 3B)
+1.a (Pilot without training using context) - not done here as the focus on this project is learning how to fine-tune
+1.b SLM baselining (test vs control)
+2. Pre-register hypotheses
+3.a Build the corpora and do QA
+3.b Define the arms (1. no fine-tuning; 2. ethics; 3. non-ethics; 4. generic text)
+4. SLM LoRA fine-tuning (test)
+5. Distributed training job
+6. SLM evaluation (test vs control)
+7. result evaluation: task success + safety
+8. statistical analysis
+
+
+Learning points:
+- LoRA vs other fine-tuning approaches - why LoRA
+- fine-tuning vs training
